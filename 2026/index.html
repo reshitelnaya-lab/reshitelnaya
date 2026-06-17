@@ -1,0 +1,358 @@
+﻿<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Exit-интервью 2026</title><style>:root {
+  --bg: #f3f1ec;
+  --ink: #151c1b;
+  --muted: #69726d;
+  --line: #ded8cc;
+  --panel: rgba(255, 255, 252, .9);
+  --green: #0f6b5b;
+  --blue: #244f80;
+  --red: #a9443d;
+  --amber: #bc7a2b;
+  --violet: #6d5aa8;
+  --pink: #c55b7a;
+  --cyan: #2a8aa0;
+  --shadow: 0 20px 60px rgba(24, 32, 29, .09);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(42, 138, 160, .20), transparent 28%),
+    radial-gradient(circle at 72% 2%, rgba(197, 91, 122, .18), transparent 24%),
+    radial-gradient(circle at 92% 18%, rgba(188, 122, 43, .20), transparent 25%),
+    linear-gradient(180deg, #fbf7ef 0%, var(--bg) 42%, #eef4f1 100%);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(21, 28, 27, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(21, 28, 27, .035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+
+.topbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-end;
+  padding: 34px 40px 22px;
+  min-height: 170px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+h1 { max-width: 760px; margin-bottom: 0; font-size: 42px; line-height: 1.04; letter-spacing: 0; }
+h2 { margin-bottom: 8px; font-size: 21px; }
+h3 { margin-bottom: 10px; font-size: 17px; }
+p, li, small { color: var(--muted); line-height: 1.45; }
+
+.period {
+  min-width: 210px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  color: white;
+  background: linear-gradient(135deg, var(--ink), var(--green));
+  box-shadow: var(--shadow);
+}
+.period span, .period strong { display: block; }
+.period span { color: rgba(255,255,255,.72); font-size: 13px; }
+.period strong { margin-top: 4px; font-size: 18px; }
+
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  padding: 12px 40px;
+  background: rgba(243, 241, 236, .88);
+  backdrop-filter: blur(18px);
+  border-top: 1px solid rgba(255,255,255,.7);
+  border-bottom: 1px solid var(--line);
+}
+
+.tab, button, select, input {
+  font: inherit;
+}
+
+.tab {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 9px 14px;
+  cursor: pointer;
+  border-radius: 999px;
+}
+.tab.is-active {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+
+main { position: relative; padding: 30px 40px 52px; }
+.page { display: none; }
+.page.is-active { display: block; }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.metric {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+}
+.metric::after {
+  content: "";
+  position: absolute;
+  inset: auto 16px 14px auto;
+  width: 54px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--cyan);
+}
+.metric:nth-child(2)::after { background: var(--pink); }
+.metric:nth-child(3)::after { background: var(--green); }
+.metric:nth-child(4)::after { background: var(--amber); }
+.metric span { display: block; color: var(--muted); font-size: 13px; }
+.metric strong { display: block; margin: 10px 0 6px; font-size: 32px; line-height: 1.05; }
+.metric.warn strong { color: var(--red); }
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+}
+.span-5 { grid-column: span 5; }
+.span-6 { grid-column: span 6; }
+.span-7 { grid-column: span 7; }
+.span-12 { grid-column: span 12; }
+
+.panel, .decision, .schema, .value-strip article, .focus-plan article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  border-radius: 22px;
+  backdrop-filter: blur(10px);
+}
+.panel:nth-child(1) { border-top: 5px solid var(--cyan); }
+.panel:nth-child(2) { border-top: 5px solid var(--green); }
+.panel:nth-child(3) { border-top: 5px solid var(--red); }
+.panel:nth-child(4) { border-top: 5px solid var(--violet); }
+.panel { padding: 22px; }
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.controls { display: flex; gap: 8px; }
+input, select {
+  border: 1px solid var(--line);
+  background: white;
+  padding: 9px 10px;
+  min-height: 38px;
+}
+
+.bars { display: grid; gap: 10px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 42px;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+.bar-track {
+  height: 13px;
+  background: #e5e2d9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), #62a690);
+  border-radius: inherit;
+}
+.bar-row:nth-child(2n) .bar-fill { background: linear-gradient(90deg, var(--blue), #7c9ec2); }
+.bar-row:nth-child(3n) .bar-fill { background: linear-gradient(90deg, var(--amber), #dbad68); }
+.bar-row:nth-child(4n) .bar-fill { background: linear-gradient(90deg, var(--pink), #e0a0b4); }
+.compact .bar-row { grid-template-columns: 210px 1fr 34px; }
+
+.signal-list {
+  display: grid;
+  gap: 11px;
+}
+.signal-list div {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.signal-list strong {
+  color: var(--blue);
+  font-size: 26px;
+}
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.risk {
+  text-align: left;
+  border: 1px solid var(--line);
+  background: #fafafa;
+  padding: 14px;
+  cursor: pointer;
+  min-height: 92px;
+  border-radius: 16px;
+}
+.risk span { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
+.risk.high { border-left: 5px solid var(--red); }
+.risk.med { border-left: 5px solid var(--amber); }
+
+.note { font-size: 13px; }
+
+.register {
+  display: grid;
+  gap: 8px;
+  max-height: 540px;
+  overflow: auto;
+  padding-right: 4px;
+}
+.record {
+  border: 1px solid var(--line);
+  background: #fbfcfb;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.record summary {
+  display: grid;
+  grid-template-columns: 1fr 130px 180px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  cursor: pointer;
+}
+.record strong { font-size: 15px; }
+.chip {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  padding: 4px 8px;
+  color: var(--muted);
+  font-size: 12px;
+  border-radius: 999px;
+}
+.record-body {
+  border-top: 1px solid var(--line);
+  padding: 12px 14px 14px;
+}
+
+.section-title {
+  max-width: 900px;
+  margin-bottom: 18px;
+}
+.decision-grid, .schema-grid, .focus-plan {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.decision {
+  padding: 20px;
+}
+.decision.priority { border-left: 6px solid var(--red); }
+.decision span {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  background: var(--ink);
+  color: white;
+  border-radius: 999px;
+}
+.decision ul, .schema ul {
+  margin-bottom: 0;
+  padding-left: 18px;
+}
+
+.value-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.value-strip article, .focus-plan article, .schema {
+  padding: 18px;
+}
+.value-strip article:nth-child(1) { border-top: 5px solid var(--green); }
+.value-strip article:nth-child(2) { border-top: 5px solid var(--cyan); }
+.value-strip article:nth-child(3) { border-top: 5px solid var(--amber); }
+.value-strip article:nth-child(4) { border-top: 5px solid var(--pink); }
+.value-strip strong, .value-strip span { display: block; }
+.value-strip span { margin-top: 8px; color: var(--muted); }
+.schema.must { border-left: 6px solid var(--green); }
+
+.accent-panel {
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(15, 107, 91, .12), rgba(36, 79, 128, .08)),
+    var(--panel);
+}
+
+.loop {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.loop span {
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background: var(--ink);
+  border-radius: 18px;
+  font-weight: 700;
+}
+
+.loop span:nth-child(2) { background: var(--green); }
+.loop span:nth-child(3) { background: var(--amber); }
+.loop span:nth-child(4) { background: var(--blue); }
+.loop span:nth-child(5) { background: var(--violet); }
+
+@media (max-width: 980px) {
+  .topbar, .panel-head, .tabs { align-items: stretch; flex-direction: column; }
+  .summary-grid, .value-strip, .decision-grid, .schema-grid, .focus-plan { grid-template-columns: 1fr; }
+  .span-5, .span-6, .span-7, .span-12 { grid-column: span 12; }
+  .record summary { grid-template-columns: 1fr; }
+  main, .topbar, .tabs { padding-left: 18px; padding-right: 18px; }
+}
+
+.metric strong.small-word{font-size:28px}.record-body p{margin-bottom:10px}.record-body b{color:var(--ink)}</style></head><body><div class="ambient" aria-hidden="true"></div><header class="topbar"><div><p class="eyebrow">People intelligence</p><h1>Exit-интервью 2026</h1></div><div class="period"><span>Срез по году</span><strong>21 карточка</strong></div></header><nav class="tabs" aria-label="Разделы отчета"><button class="tab is-active" data-page="analytics">Аналитика</button><button class="tab" data-page="decisions">HR-решения</button><button class="tab" data-page="values">Ценности и опыт</button><button class="tab" data-page="card">Карточка интервью</button></nav><main><section class="page is-active" id="analytics"><section class="summary-grid"><article class="metric"><span>Интервью в анализе</span><strong>21</strong><small>21 карточка 2026, 0 — нет данных</small></article><article class="metric"><span>Управляемые причины</span><strong>≈95%</strong><small>роль, процессы, рост, нагрузка, коммуникация</small></article><article class="metric"><span>Готовность вернуться</span><strong>5 / 21</strong><small>2 готовы, 3 допускают при условиях, 3 не готовы</small></article><article class="metric"><span>Главный риск</span><strong class="small-word">процессы</strong><small>Процессы и клиентский контур</small></article></section><section class="layout"><article class="panel span-7"><div class="panel-head"><div><h2>Карта повторяющихся причин</h2><p>Фокус на причинах, которые повторяются в интервью и управляемы через процессы, роли, коммуникацию и условия.</p></div></div><div class="bars" id="bars"></div></article><article class="panel span-5"><div class="panel-head"><div><h2>Риск-карта</h2><p>Сколько раз причина встречается в интервью.</p></div></div><div class="risk-grid" id="risks"></div></article><article class="panel span-12"><div class="panel-head"><div><h2>Реестр интервью</h2><p>Короткая управленческая выжимка по каждой карточке 2026 года.</p></div><div class="controls"><input id="search" type="search" placeholder="Поиск"><select id="department"><option value="all">Все отделы</option></select><select id="category"><option value="all">Все причины</option></select></div></div><div class="register" id="register"></div></article></section></section><section class="page" id="decisions"><section class="section-title"><h2>Что делать HR и руководителям</h2><p>Приоритеты построены вокруг повторяющихся причин ухода: роли, процессов, роста, нагрузки и качества коммуникации.</p></section><div class="decision-grid"><article class="decision priority"><span>1</span><h3>Уточнить роль и ценность работы</h3><ul><li>на старте фиксировать ожидания по роли и результату;</li><li>обсуждать интерес к задачам на 1:1 до появления оффера;</li><li>показывать траекторию роста внутри команды.</li></ul></article><article class="decision"><span>2</span><h3>Снять процессные трения</h3><ul><li>разделить зоны ответственности в клиентском контуре;</li><li>убрать лишние согласования и повторные ручные действия;</li><li>закрепить понятные правила по срокам и приоритетам.</li></ul></article><article class="decision"><span>3</span><h3>Управлять ростом и доходом до оффера</h3><ul><li>делать регулярный разговор о развитии и компенсации;</li><li>видеть сотрудников с высоким потенциалом до рынка;</li><li>фиксировать условия, при которых человек готов остаться.</li></ul></article><article class="decision"><span>4</span><h3>Поддержать руководителей в коммуникации</h3><ul><li>усилить обратную связь, синхронизации и ясность ожиданий;</li><li>снижать микроменеджмент там, где он мешает автономии;</li><li>быстрее разбирать сигналы перегруза и эмоционального выгорания.</li></ul></article></div></section><section class="page" id="values"><section class="section-title"><h2>Что в опыте сотрудников требует внимания</h2><p>В интервью сильнее всего повторяются темы смысла роли, понятности процессов, управляемой нагрузки и качества контакта с руководителем.</p></section><div class="value-strip"><article><strong>Роль</strong><span>ожидания по задачам и реальная работа должны совпадать</span></article><article><strong>Процессы</strong><span>сотрудники чувствительны к хаосу, срокам и неясным правилам</span></article><article><strong>Рост</strong><span>если траектория не видна внутри, рынок становится сильнее</span></article><article><strong>Коммуникация</strong><span>регулярная обратная связь снижает риск внезапного ухода</span></article></div><div class="focus-plan"><article><h3>Что удерживало</h3><p>Команда, интересные задачи, автономия и ощущение пользы для клиента.</p></article><article><h3>Что срывало решение</h3><p>Оффер, расхождение ожиданий по роли, перегруз, неясные процессы и слабый диалог о будущем.</p></article></div></section><section class="page" id="card"><section class="section-title"><h2>Как улучшить карточку exit-интервью</h2><p>Чтобы с мая 2026 отчет стал регулярным инструментом управления, карточку нужно сделать аналитически пригодной.</p></section><div class="schema-grid"><article class="schema must"><h3>Обязательные поля</h3><ul><li>ФИО сотрудника</li><li>Дата увольнения</li><li>Отдел / практика / команда</li><li>Должность и уровень</li><li>Руководитель</li><li>Срок работы в компании</li><li>Формат работы: офис / гибрид / удаленно</li></ul></article><article class="schema"><h3>Кодируемые причины</h3><ul><li>основная причина ухода, 1 вариант;</li><li>дополнительные причины, несколько вариантов;</li><li>управляемость причины: да / частично / нет;</li><li>риск повторения в команде;</li><li>готовность вернуться;</li><li>готовность рекомендовать компанию.</li></ul></article><article class="schema"><h3>Качественные блоки</h3><ul><li>что удерживало до решения уйти;</li><li>что стало триггером;</li><li>что компания могла сделать раньше;</li><li>оценка руководителя и коммуникации;</li><li>оценка нагрузки и переработок;</li><li>качество адаптации и наставничества.</li></ul></article><article class="schema"><h3>Технические правила</h3><ul><li>единый справочник отделов и руководителей;</li><li>закрытые списки для метрик + свободный комментарий;</li><li>автоматическое поле “месяц отчета”;</li><li>уникальный ID интервью;</li><li>отдельный статус доступа к документу;</li><li>запрет на обрезанные ссылки как источник данных.</li></ul></article></div></section></main><script>const data={"records":[{"id":"184196","name":"Исакова Ольга","department":"Маркетинг","created":"2026-01-13","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Руководство и коммуникация","Адаптация и обучение","Личные обстоятельства"],"reason":"в отсутствии возможности выполнения обязанностей на которые нанималась в целом да ближе познакомилась со сферой финансов\\ работа не прекращалась не в выходные не в вечерние часы, вплоть до отхода ко сну\\ согласованность","returnStatus":"нет данных","recommend":"нет данных","quote":"В отсутствии возможности выполнения обязанностей на которые нанималась"},{"id":"184280","name":"Серова Татьяна","department":"Бухгалтерский аутсорсинг","created":"2026-01-14","analyzed":true,"category":["Роль и интерес задач","Адаптация и обучение"],"reason":"не достаточно компетенций","returnStatus":"нет данных","recommend":"нет данных","quote":"не достаточно компетенций"},{"id":"185044","name":"Апаликова Евгения","department":"Бухгалтерия Капитал","created":"2026-01-21","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"не комфортно. тяжело со Светланой Караваевой. некоторые задачи не обьясняли, приходилось самой разбираться, например, работа с самозанятыми.","returnStatus":"готов(а)","recommend":"да","quote":"не комфортно. тяжело со Светланой Караваевой. некоторые задачи не обьясняли, приходилось самой разбираться, например, работа с самозанятыми."},{"id":"186952","name":"Петрова М.","department":"Управленческий учет","created":"2026-02-11","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"сделали интересное предложение с возможностью карьерного роста да, было интерсно, разнообразные задачи. анализ отчетности (баланс, одр, ддс), использование ии в работе один раз была задача с жатыми сроками больше обратно","returnStatus":"нет данных","recommend":"нет данных","quote":"Сделали интересное предложение с возможностью карьерного роста"},{"id":"186974","name":"Афанасьева (Магзумова) А.","department":"BI","created":"2026-02-11","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Оплата и нагрузка","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"уровень заработной платы да всему, я ничего не умела до капиала, это моя первая работа да, приходилось, в среднем 1р /неделю из-за загрузки на проекте возможно, понимание своих обязанностей - они каждые полгода добавляли","returnStatus":"нет данных","recommend":"нет данных","quote":"Всему, я ничего не умела до Капиала, это моя первая работа"},{"id":"187034","name":"Кугаевская Екатерина","department":"Зарплата и кадры","created":"2026-02-12","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Оплата и нагрузка","Руководство и коммуникация","Формат работы","Адаптация и обучение"],"reason":"в 2023 пришла в Капитал, было всё спокойно, а потом стали часто дергать/отвлекать (частые планерки), это сказывается на качестве работы. Также чаты отвлекают сильно. Руководитель часто пишет после 18ч. Низкая ЗП.","returnStatus":"не готов(а)","recommend":"нет данных","quote":"в 2023 пришла в Капитал, было всё спокойно, а потом стали часто дергать/отвлекать (частые планерки), это сказывается на качестве работы. Также чаты отвлекают сильно. Руководитель часто пишет после 18ч. Низкая ЗП."},{"id":"187206","name":"Петровская М.","department":"Клиентский сервис","created":"2026-02-13","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Оплата и нагрузка","Руководство и коммуникация","Формат работы","Личные обстоятельства"],"reason":"устала от отношения к себе - без предупреждения перевели в ом, как будто бы в отделе кс много сотрудников. считаю, что в кс всё выполняла и перевыполняла. давала ос - что не хочу в продажи, в ом. в итоге решением видела","returnStatus":"нет данных","recommend":"нет данных","quote":"Устала от отношения к себе - без предупреждения перевели в ОМ, как будто бы в отделе КС много сотрудников. Считаю, что в КС всё выполняла и перевыполняла. Давала ОС - что не хочу в продажи, в ОМ. В итоге решением видела - уход из Компании. Плюсом уменьшение ЗП"},{"id":"188062","name":"Шевцова О.","department":"Управленческий учет","created":"2026-02-20","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Оплата и нагрузка","Формат работы","Личные обстоятельства"],"reason":"устала от удаленной работы, не хватает общения вживую)) хочу видеть и общаться вживую с людьми. да, вполне работать с большим массивом данных, работать в команде, практические знания приходилось, но единичные случаи техн","returnStatus":"нет данных","recommend":"нет данных","quote":"Устала от удаленной работы, не хватает общения вживую)) Хочу видеть и общаться вживую с людьми."},{"id":"189310","name":"Кузьмина Екатерина","department":"Зарплата и кадры","created":"2026-03-04","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Руководство и коммуникация"],"reason":"предложили более релевантное место\\ да не упела чему-то научиться\\ нет учет времени на вакансии маркетолога - утопия. фиксирование каждой задачи в битрикс подходит продажам, но не маркетологам. были случаи, что на написа","returnStatus":"нет данных","recommend":"нет данных","quote":"Предложили более релевантное место\\"},{"id":"189432","name":"Хадиуллина Нэркэс","department":"Бухгалтерский аутсорсинг","created":"2026-03-05","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Оплата и нагрузка","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"высокая загрузка. не хватает опыта работы, поэтому сложно","returnStatus":"при условиях","recommend":"нет данных","quote":"высокая загрузка. не хватает опыта работы, поэтому сложно"},{"id":"189484","name":"Воднева Е.","department":"Управленческий учет","created":"2026-03-06","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Оплата и нагрузка","Руководство и коммуникация","Формат работы","Адаптация и обучение"],"reason":"очень сложно объяснить в 2-х словах: есть внутренние вопросы наши, которые не решаются, и как будто они игнорируются по решению. хочу развиваться дальше, но за то время, пока работала в уу не получила того развития, кото","returnStatus":"нет данных","recommend":"нет данных","quote":"Очень сложно объяснить в 2-х словах: есть внутренние вопросы наши, которые не решаются, и как будто они игнорируются по решению. Хочу развиваться дальше, но за то время, пока работала в уу не получила того развития, которое обещали на входе (про которое говори"},{"id":"189508","name":"Заикин Андрей","department":"Бухгалтерский аутсорсинг","created":"2026-03-06","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Оплата и нагрузка","Руководство и коммуникация","Адаптация и обучение"],"reason":"Предложили другое место. мне показалось интереснее. Широкий спектор задач. неоднообразные.","returnStatus":"при условиях","recommend":"да","quote":"Предложили другое место. мне показалось интереснее. Широкий спектор задач. неоднообразные."},{"id":"189902","name":"Пестрякова Е.","department":"Управленческий учет","created":"2026-03-13","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Оплата и нагрузка","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"всё-таки в моем желании сменить вид деятельности. начала учиться на графического дизайнера, решила, что надо попробовать 100% оправдала много чему, это моя первая серьезная работа, пришла с никакими знаниями и меня всему","returnStatus":"нет данных","recommend":"нет данных","quote":"Всё-таки в моем желании сменить вид деятельности. Начала учиться на графического дизайнера, решила, что надо попробовать"},{"id":"190594","name":"Резникова Е.","department":"Маркетинг","created":"2026-03-24","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Рост и новое предложение","Оплата и нагрузка","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"Заработная плата и резкий перевод с гибридного формата работы на полный офисный режим по желанию Ольги Сергеевны Шоалл. Для меня поездки в офис и расходы около 15 тысяч рублей на такси слишком дорого.Переработки не учитывались, а как опоздаешь на работу, сразу","returnStatus":"при условиях","recommend":"да","quote":"Заработная плата и резкий перевод с гибридного формата работы на полный офисный режим по желанию Ольги Сергеевны Шоалл. Для меня поездки в офис и расходы около 15 тысяч рублей на такси слишком дорого.Переработки не учитывались, а как опоздаешь на работу, сразу"},{"id":"192452","name":"Тухватуллина И.","department":"Аудит","created":"2026-04-14","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Оплата и нагрузка","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"зарплата (низкий уровень) - обещали увеличить зп после испытательного срока, но ничего не решили и ничего не измнилось, плюсом высокая нагрузка по учебе в основном да, оправдались в целом узнала про аудит во время отчетн","returnStatus":"нет данных","recommend":"нет данных","quote":"Зарплата (низкий уровень) - обещали увеличить зп после Испытательного срока, но ничего не решили и ничего не измнилось, плюсом высокая нагрузка по учебе"},{"id":"192454","name":"Джафарова Д.","department":"Аудит","created":"2026-04-14","analyzed":true,"category":["Оплата и нагрузка","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"зарплата (низкий уровень) скорее да, чем нет терпиливости, усидчивости, знание бух учета очень часто, почти каждый день, постоянные переработки ничего в целом хорошо, но хотелось бы получать больше ос от руководителя, бо","returnStatus":"нет данных","recommend":"нет данных","quote":"Терпиливости, усидчивости, знание бух учета"},{"id":"192670","name":"Пинегина О.","department":"Маркетинг","created":"2026-04-17","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Формат работы","Личные обстоятельства"],"reason":"работа с базой: холодная база, сложность выполнения плана частично да, частично нет не могу сказать, нет четкого ответа нет, не приходилось подход в организациии работы с клиентской базой в целом, нормально. больше взаим","returnStatus":"нет данных","recommend":"нет данных","quote":"Работа с базой: холодная база, сложность выполнения плана"},{"id":"194314","name":"Панасевич Е.","department":"Маркетинг","created":"2026-05-12","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Руководство и коммуникация","Формат работы","Адаптация и обучение","Личные обстоятельства"],"reason":"не ощутила важность и нужность своей роли для компании (вижу роль мопа как функцию, спам-бот для клиентов), не увидела своей ценности в компании нет работе в битрикс нет, не приходилось сам процесс продаж (цепочку) внутр","returnStatus":"нет данных","recommend":"нет данных","quote":"Не ощутила важность и нужность своей роли для компании (вижу роль МОПа как функцию, спам-бот для клиентов), не увидела своей ценности в компании"},{"id":"may-panasevich-full","name":"Евгения Панасевич","created":"2026-05-12","department":"Маркетинг","analyzed":true,"category":["Роль и интерес задач","Процессы и клиентский контур","Руководство и коммуникация","Формат работы","Адаптация и обучение"],"reason":"не почувствовала важность и ценность своей роли для компании; роль воспринималась как функция холодных касаний, а не как вклад в общий результат","returnStatus":"не готов(а)","recommend":"скорее да, чем нет","quote":"Не ощутила важность и нужность своей роли для компании, не увидела своей ценности."},{"id":"may-pankratova","name":"Ольга Панкратова","created":"2026-05","department":"Аудит","analyzed":true,"category":["Процессы и клиентский контур","Оплата и нагрузка","Формат работы","Личные обстоятельства"],"reason":"семейные обстоятельства и сложность совмещать работу с заботой о ребенке; даже полная удаленка не сняла нагрузку","returnStatus":"готов(а)","recommend":"да","quote":"Было комфортно в компании, но совмещать работу с заботой о ребенке стало тяжело."},{"id":"may-dmitrichenko","name":"Дмитриченко Олеся","created":"2026-05","department":"Бухгалтерия Капитал","analyzed":true,"category":["Процессы и клиентский контур","Руководство и коммуникация","Оплата и нагрузка"],"reason":"уход по инициативе руководителя; в опыте повторяются темы неясной постановки задач, процесса по выручке и стартовой перегрузки","returnStatus":"не готов(а)","recommend":"да","quote":"Не всегда была ясна задача: иногда приходил обрывок без контекста."}],"risk":[["Процессы и клиентский контур",19],["Роль и интерес задач",18],["Формат работы",16],["Руководство и коммуникация",16],["Адаптация и обучение",15],["Личные обстоятельства",14],["Оплата и нагрузка",13],["Рост и новое предложение",10]],"totals":{"cards":21,"analyzed":21,"noData":0,"manageableShare":95,"readyTotal":5,"ret":{"нет данных":13,"готов(а)":2,"не готов(а)":3,"при условиях":3},"mainRisk":"Процессы и клиентский контур"}};const $=(s)=>document.querySelector(s);const esc=(s)=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('is-active'));document.querySelectorAll('.page').forEach(x=>x.classList.remove('is-active'));btn.classList.add('is-active');document.getElementById(btn.dataset.page).classList.add('is-active')}));function renderBars(){const max=Math.max(...data.risk.map(x=>x[1]),1);$('#bars').innerHTML=data.risk.map(x=>'<div class="bar-row"><span>'+esc(x[0])+'</span><div class="bar-track"><div class="bar-fill" style="width:'+Math.max(12,x[1]/max*100)+'%"></div></div><b>'+x[1]+'</b></div>').join('')}function renderRisks(){$('#risks').innerHTML=data.risk.slice(0,8).map((x,i)=>'<button class="risk '+(i<2?'high':'med')+'" data-cat="'+esc(x[0])+'"><strong>'+esc(x[0])+'</strong><span>'+x[1]+' упоминаний причины</span></button>').join('');document.querySelectorAll('.risk').forEach(x=>x.addEventListener('click',()=>{$('#category').value=x.dataset.cat;renderRegister()}))}function renderFilters(){const cats=[...new Set(data.records.flatMap(r=>r.category))].sort();const deps=[...new Set(data.records.map(r=>r.department||'нет данных'))].sort();$('#category').innerHTML+=cats.map(c=>'<option value="'+esc(c)+'">'+esc(c)+'</option>').join('');$('#department').innerHTML+=deps.map(d=>'<option value="'+esc(d)+'">'+esc(d)+'</option>').join('');$('#category').addEventListener('change',renderRegister);$('#department').addEventListener('change',renderRegister);$('#search').addEventListener('input',renderRegister)}function renderRegister(){const q=$('#search').value.toLowerCase();const c=$('#category').value;const d=$('#department').value;const filtered=data.records.filter(r=>(c==='all'||r.category.includes(c))&&(d==='all'||(r.department||'нет данных')===d)&&[r.name,r.department||'нет данных',r.reason,r.created,r.category.join(' ')].join(' ').toLowerCase().includes(q));$('#register').innerHTML=filtered.map(r=>'<details class="record"><summary><strong>'+esc(r.name)+'</strong><span class="chip">'+esc(r.department||'нет данных')+'</span><span class="chip">'+esc(r.created)+'</span><span class="chip">'+esc(r.category[0])+'</span></summary><div class="record-body"><p><b>Отдел:</b> '+esc(r.department||'нет данных')+'</p><p><b>Причина:</b> '+esc(r.reason)+'</p><p><b>Готовность вернуться:</b> '+esc(r.returnStatus)+' · <b>Рекомендация:</b> '+esc(r.recommend)+'</p><p class="note"><b>Фрагмент:</b> '+esc(r.quote)+'</p></div></details>').join('')}renderBars();renderRisks();renderFilters();renderRegister();</script></body></html>
